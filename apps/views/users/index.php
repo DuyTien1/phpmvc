@@ -18,23 +18,21 @@ require_once('apps/views/layouts/header.php');
                         <th scope="col">Email</th>
                         <th scope="col">Địa chỉ</th>
                         <th scope="col">Số Điện Thoại</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Thao Tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php 
-                    for ($i=0 ; $i < count($data) ; $i++) {
+                    for ($i=0 ; $i < count($data['users']) ; $i++) {
                         echo "<tr class='text-white text-center'>";
-                        foreach ($data as $key => $value) {
                             echo "
                             <td><input class='form-check-input' type='checkbox'></td>
                             <td>".$data['users'][$i]->username."</td>
                             <td>".$data['users'][$i]->email."</td>
                             <td>".$data['users'][$i]->address."</td>
                             <td>".$data['users'][$i]->phone."</td>
-                            <td><a class='btn btn-sm btn-info m-3' href='index.php?controller=users&action=show&id=".$data['users'][$i]->id ."'>Sửa</a><a class='btn btn-sm btn-primary' href=''>Xóa</a></td>
+                            <td><a class='btn btn-sm btn-info m-3' href='index.php?controller=users&action=show&id=".$data['users'][$i]->id."'>Sửa</a><a class='btn btn-sm btn-primary' href=''>Xóa</a></td>
                             ";
-                        }
                         
                         echo"</tr>";
                     }

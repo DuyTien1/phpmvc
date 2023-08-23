@@ -60,7 +60,7 @@ class User
         $req->execute(array('email' => $email));
         $item = $req->fetch();
         if (isset($item['id'])) {
-            return $item;
+            return new User($item['id'], $item['username'], $item['email'], $item['password'], $item['address'], $item['phone'], $item['role_id']);
             }
         return null;
     }

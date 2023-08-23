@@ -64,7 +64,6 @@ if (!isset($_COOKIE['token']) || !isset($_COOKIE['email']) || !isset($_COOKIE['u
                     </div>
                 </div> -->
                 <div class="navbar-nav w-100">
-                    <a href="index.php?controller=dashboards" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -73,11 +72,67 @@ if (!isset($_COOKIE['token']) || !isset($_COOKIE['email']) || !isset($_COOKIE['u
                             <a href="element.html" class="dropdown-item">Other Elements</a>
                         </div>
                     </div> -->
+                    <?php 
+                        if ($index == 'dashboards') {
+                    ?>
+                    <a href="index.php?controller=dashboards" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Danh Mục Truyện</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-book me-2"></i>Truyện</a>
                     <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Vai Trò</a>
                     <a href="index.php?controller=users&action=index" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người Dùng</a>
                     <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình Luận</a>
+                    <?php
+                        } else if ($index == 'category') {
+                            ?>
+                            <a href="index.php?controller=dashboards" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
+                            <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2 active"></i>Danh Mục Truyện</a>
+                            <a href="form.html" class="nav-item nav-link"><i class="fa fa-book me-2"></i>Truyện</a>
+                            <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Vai Trò</a>
+                            <a href="index.php?controller=users&action=index" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người Dùng</a>
+                            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình Luận</a>
+                            <?php
+                        } else if ($index == 'story') {
+                            
+                            ?>
+                            <a href="index.php?controller=dashboards" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
+                            <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Danh Mục Truyện</a>
+                            <a href="form.html" class="nav-item nav-link"><i class="fa fa-book me-2 active"></i>Truyện</a>
+                            <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Vai Trò</a>
+                            <a href="index.php?controller=users&action=index" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người Dùng</a>
+                            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình Luận</a>
+                            <?php 
+                        } else if ($index == 'roles') {
+                            ?>
+                            <a href="index.php?controller=dashboards" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
+                            <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Danh Mục Truyện</a>
+                            <a href="form.html" class="nav-item nav-link"><i class="fa fa-book me-2"></i>Truyện</a>
+                            <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2 active"></i>Vai Trò</a>
+                            <a href="index.php?controller=users&action=index" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người Dùng</a>
+                            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình Luận</a>
+                            <?php 
+                        } else if ($index == 'users') {
+                            ?>
+                            <a href="index.php?controller=dashboards" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
+                            <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Danh Mục Truyện</a>
+                            <a href="form.html" class="nav-item nav-link"><i class="fa fa-book me-2"></i>Truyện</a>
+                            <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Vai Trò</a>
+                            <a href="index.php?controller=users&action=index" class="nav-item nav-link active"><i class="fa fa-user me-2"></i>Người Dùng</a>
+                            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình Luận</a>
+                            <?php 
+                        } else if ($index == 'settings') {
+                            ?>
+                            <a href="index.php?controller=dashboards" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
+                            <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Danh Mục Truyện</a>
+                            <a href="form.html" class="nav-item nav-link"><i class="fa fa-book me-2"></i>Truyện</a>
+                            <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Vai Trò</a>
+                            <a href="index.php?controller=users&action=index" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người Dùng</a>
+                            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2 active"></i>Bình Luận</a>
+                            <?php }?>
+
+
+
+
+
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
                         <div class="dropdown-menu bg-transparent border-0">

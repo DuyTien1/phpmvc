@@ -33,9 +33,9 @@ class AuthsController extends BaseController{
                         // $d = date('Y-m-d H:i:s');
                         // $d = strtotime("+7 day");
                         // $date = date('Y-m-d H:i:s', $d);
-                        setcookie('token', $token, time()+7*24*64*64, '/');
-                        setcookie('email', $user['email'], time()+7*24*64*64, '/');
-                        setcookie('username', $user['username'], time()+7*24*64*64, '/');
+                        setcookie('token', $token, time()+7*24*60*60, '/');
+                        setcookie('email', $user->email, time()+7*24*60*60, '/');
+                        setcookie('username', $user->username, time()+7*24*60*60, '/');
                         header('Location: index.php?controller=dashboards');
                     } else {
                         $_SESSION['message'] = 'Đăng Nhập Thất Bại!!!';
@@ -56,9 +56,9 @@ class AuthsController extends BaseController{
                     // $d = date('Y-m-d H:i:s');
                     // $d = strtotime("+7 day");
                     // $date = date('Y-m-d H:i:s', $d);
-                    setcookie('token', $token, time()+7*24*64*64, '/');
-                    setcookie('email', $user['email'], time()+7*24*64*64, '/');
-                    setcookie('username', $user['username'], time()+7*24*64*64, '/');
+                    setcookie('token', $token, time()+7*24*60*60, '/');
+                    setcookie('email', $user->email, time()+7*24*60*60, '/');
+                    setcookie('username', $user->username, time()+7*24*60*60, '/');
                     header('Location: index.php?controller=dashboards');
                 } else {
                     $_SESSION['message'] = 'Đăng Nhập Thất Bại!!!';
@@ -81,9 +81,9 @@ class AuthsController extends BaseController{
     public function destroy() {
         $tokens = Token::findToken($_COOKIE['token']);
         Token::destroy($tokens->id);
-        unset($_COOKIE['token']);
-        unset($_COOKIE['email']);
-        unset($_COOKIE['username']);
+        setcookie('token', '', -1, '/'); 
+        setcookie('email', '', -1, '/'); 
+        setcookie('username', '', -1, '/'); 
         header('Location: index.php?controller=auths');
     }
     public function error(){

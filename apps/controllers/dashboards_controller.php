@@ -7,7 +7,10 @@ class DashboardsController extends BaseController{
     }
 
     public function index() {
-        $this->render('index');
+        $data = array(
+            'index' => 'dashboards'
+        );
+        $this->render('index', $data);
     } 
 
     public function login() {

@@ -13,7 +13,7 @@ class UsersController extends BaseController
   public function index()
   {
     $users = User::all();
-    $data = array('users' => $users);
+    $data = array('users' => $users, 'index' => 'users');
     $this->render('index', $data);
   }
 
