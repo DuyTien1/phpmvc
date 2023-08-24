@@ -24,6 +24,11 @@ class UsersController extends BaseController
     $this->render('show', $data);
   }
 
+  public function toCreate() {
+    $data = array('index' => 'users');
+    $this->render('create', $data);
+  }
+
   public function create() {
     if (isset($_SESSION['email']) && isset($_SESSION['password']) && isset($_SESSION['username']) && isset($_SESSION['address']) && isset($_SESSION['phone'])) {
       if ($_SESSION['email'] == $_POST['email'] && $_SESSION['username'] == $_POST['username'] && $_SESSION['address'] == $_POST['address'] && $_SESSION['password'] == $_POST['password'] && $_SESSION['phone'] == $_POST['phone']) {

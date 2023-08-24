@@ -7,7 +7,7 @@ require_once('apps/views/layouts/header.php');
     <div class="bg-secondary rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">QuẢN LÝ NGƯỜI DÙNG</h6>
-            <a class="btn btn-sm btn-success" href="">Thêm</a>
+            <a class="btn btn-sm btn-success" href="index.php?controller=users&action=toCreate">Thêm</a>
         </div>
         <div class="table-responsive">
             <table class="table text-start align-middle table-bordered table-hover mb-0">
