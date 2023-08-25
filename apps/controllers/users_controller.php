@@ -20,13 +20,85 @@ class UsersController extends BaseController
   public function show(){
     $users = User::find($_GET['id']);
     $roles = Role::find($users->role_id);
-    $data = array('users' => $users, 'roles' => $roles);
+    $data = array('users' => $users, 'roles' => $roles, 'index' => 'users');
     $this->render('show', $data);
   }
 
   public function toCreate() {
-    $data = array('index' => 'users');
+    $roles = Role::all();
+    $data = array('roles' => $roles, 'index' => 'users');
     $this->render('create', $data);
+  }
+
+  public function createUser() {
+    if (isset($_SESSION['email']) && isset($_SESSION['password']) && isset($_SESSION['username']) && isset($_SESSION['address']) && isset($_SESSION['phone'])) {
+      if ($_SESSION['email'] == $_POST['email'] && $_SESSION['username'] == $_POST['username'] && $_SESSION['address'] == $_POST['address'] && $_SESSION['password'] == $_POST['password'] && $_SESSION['phone'] == $_POST['phone']) {
+        unset($_SESSION['message']);
+        $this->render('index', 'index' => 'users');
+      } else {
+        if ($_POST['password'] != $_POST['password_confirmation']) {
+          $_SESSION['message'] = 'Mật Khẩu Chưa Chính Xác!!!';
+          $_SESSION['username'] = $_POST['username'];
+          $_SESSION['email'] = $_POST['email'];
+          $_SESSION['password'] = $_POST['password'];
+          $_SESSION['address'] = $_POST['address'];
+          $_SESSION['phone'] = $_POST['phone'];
+          $this->render('create', 'index' => 'users');
+          } else if (User::emailVerify($_POST['email'])) {
+              $_SESSION['message'] = 'Email Đã Tồn Tại!!!';
+              $_SESSION['username'] = $_POST['username'];
+              $_SESSION['email'] = $_POST['email'];
+              $_SESSION['password'] = $_POST['password'];
+              $_SESSION['address'] = $_POST['address'];
+              $_SESSION['phone'] = $_POST['phone'];
+              $this->render('create', 'index' => 'users');
+            } else if (User::phoneVerify($_POST['phone'])) {
+                $_SESSION['message'] = 'Số Điện Thoại Đã Tồn Tại!!!';
+                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['password'] = $_POST['password'];
+                $_SESSION['address'] = $_POST['address'];
+                $_SESSION['phone'] = $_POST['phone'];
+                $this->render('create', 'index' => 'users');
+              } else {
+                  $role_id = 1;
+                  User::create($_POST['username'], $_POST['email'], $_POST['password'], $_POST['address'], $_POST['phone'], $role_id);
+                  $_SESSION['success'] = 'Tạo Tài Khoản Mới Thành Công!!!';
+                  $this->render('index', 'index' => 'users');
+        }
+      }
+    } else {
+      if ($_POST['password'] != $_POST['password_confirmation']) {
+        $_SESSION['message'] = 'Mật Khẩu Chưa Chính Xác!!!';
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['password'] = $_POST['password'];
+        $_SESSION['address'] = $_POST['address'];
+        $_SESSION['phone'] = $_POST['phone'];
+        $this->render('create', 'index' => 'users');
+        } else if (User::emailVerify($_POST['email'])) {
+            $_SESSION['message'] = 'Email Đã Tồn Tại!!!';
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['email'] = $_POST['email'];
+            $_SESSION['password'] = $_POST['password'];
+            $_SESSION['address'] = $_POST['address'];
+            $_SESSION['phone'] = $_POST['phone'];
+            $this->render('create', 'index' => 'users');
+          } else if (User::phoneVerify($_POST['phone'])) {
+              $_SESSION['message'] = 'Số Điện Thoại Đã Tồn Tại!!!';
+              $_SESSION['username'] = $_POST['username'];
+              $_SESSION['email'] = $_POST['email'];
+              $_SESSION['password'] = $_POST['password'];
+              $_SESSION['address'] = $_POST['address'];
+              $_SESSION['phone'] = $_POST['phone'];
+              $this->render('create', 'index' => 'users');
+            } else {
+                $role_id = 1;
+                User::create($_POST['username'], $_POST['email'], $_POST['password'], $_POST['address'], $_POST['phone'], $role_id);
+                $_SESSION['success'] = 'Tạo Tài Khoản Mới Thành Công!!!';
+                $this->render('index', 'index' => 'users');
+      }
+    }
   }
 
   public function create() {
