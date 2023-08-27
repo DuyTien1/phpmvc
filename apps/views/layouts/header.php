@@ -73,7 +73,7 @@ if (!isset($_COOKIE['token']) || !isset($_COOKIE['email']) || !isset($_COOKIE['u
                         </div>
                     </div> -->
                     <?php 
-                        if ($index == 'dashboards') {
+                        if ($navbar == 'dashboards') {
                     ?>
                     <a href="index.php?controller=dashboards" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Danh Mục Truyện</a>
@@ -82,7 +82,7 @@ if (!isset($_COOKIE['token']) || !isset($_COOKIE['email']) || !isset($_COOKIE['u
                     <a href="index.php?controller=users&action=index" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người Dùng</a>
                     <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình Luận</a>
                     <?php
-                        } else if ($index == 'category') {
+                        } else if ($navbar == 'category') {
                             ?>
                             <a href="index.php?controller=dashboards" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
                             <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2 active"></i>Danh Mục Truyện</a>
@@ -91,7 +91,7 @@ if (!isset($_COOKIE['token']) || !isset($_COOKIE['email']) || !isset($_COOKIE['u
                             <a href="index.php?controller=users&action=index" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người Dùng</a>
                             <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình Luận</a>
                             <?php
-                        } else if ($index == 'story') {
+                        } else if ($navbar == 'story') {
                             
                             ?>
                             <a href="index.php?controller=dashboards" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
@@ -101,7 +101,7 @@ if (!isset($_COOKIE['token']) || !isset($_COOKIE['email']) || !isset($_COOKIE['u
                             <a href="index.php?controller=users&action=index" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người Dùng</a>
                             <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình Luận</a>
                             <?php 
-                        } else if ($index == 'roles') {
+                        } else if ($navbar == 'roles') {
                             ?>
                             <a href="index.php?controller=dashboards" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
                             <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Danh Mục Truyện</a>
@@ -110,7 +110,7 @@ if (!isset($_COOKIE['token']) || !isset($_COOKIE['email']) || !isset($_COOKIE['u
                             <a href="index.php?controller=users&action=index" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người Dùng</a>
                             <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình Luận</a>
                             <?php 
-                        } else if ($index == 'users') {
+                        } else if ($navbar == 'users') {
                             ?>
                             <a href="index.php?controller=dashboards" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
                             <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Danh Mục Truyện</a>
@@ -119,7 +119,7 @@ if (!isset($_COOKIE['token']) || !isset($_COOKIE['email']) || !isset($_COOKIE['u
                             <a href="index.php?controller=users&action=index" class="nav-item nav-link active"><i class="fa fa-user me-2"></i>Người Dùng</a>
                             <a href="chart.html" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình Luận</a>
                             <?php 
-                        } else if ($index == 'settings') {
+                        } else if ($navbar == 'settings') {
                             ?>
                             <a href="index.php?controller=dashboards" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
                             <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Danh Mục Truyện</a>

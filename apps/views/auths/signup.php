@@ -62,7 +62,7 @@
                             } else {
                             }
                         ?>
-                        <form action="index.php?controller=users&action=create" method="post">
+                        <form action="index.php?controller=auths&action=create" method="post">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingText" name="username" placeholder="Nguyễn Văn A" required pattern="\S+.*">
                                 <label for="floatingText">Tên Người Dùng </label>

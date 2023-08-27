@@ -8,7 +8,7 @@ class DashboardsController extends BaseController{
 
     public function index() {
         $data = array(
-            'index' => 'dashboards'
+            'navbar' => 'dashboards'
         );
         $this->render('index', $data);
     } 

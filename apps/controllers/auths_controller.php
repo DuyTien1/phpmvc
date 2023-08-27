@@ -24,12 +24,10 @@ class AuthsController extends BaseController{
                 $this->render('index');
             } else {
                 if (isset($_POST['email']) && isset($_POST['password'])) {
-                    $email = $_POST['email'];
-                    $password = $_POST['password'];
-                    if (User::userVerify($email, $password)) {
-                        $token = md5($email.$password);
-                        $user = User::findEmail($email);
-                        Token::create($token, $user['id']);
+                    if (User::userVerify($_POST['email'], $_POST['password'])) {
+                        $token = md5($_POST['password'].$_POST['password']);
+                        $user = User::findEmail($_POST['email']);
+                        Token::create($token, $user->id);
                         // $d = date('Y-m-d H:i:s');
                         // $d = strtotime("+7 day");
                         // $date = date('Y-m-d H:i:s', $d);
@@ -47,11 +45,9 @@ class AuthsController extends BaseController{
             }
         } else {
             if (isset($_POST['email']) && isset($_POST['password'])) {
-                    $email = $_POST['email'];
-                    $password = $_POST['password'];
-                if (User::userVerify($email, $password)) {
-                    $token = md5($email.$password);
-                    $user = User::findEmail($email);
+                if (User::userVerify($_POST['email'], $_POST['password'])) {
+                    $token = md5($_POST['email'].$_POST['password']);
+                    $user = User::findEmail($_POST['email']);
                     Token::create($token, $user->id);
                     // $d = date('Y-m-d H:i:s');
                     // $d = strtotime("+7 day");
@@ -59,7 +55,7 @@ class AuthsController extends BaseController{
                     setcookie('token', $token, time()+7*24*60*60, '/');
                     setcookie('email', $user->email, time()+7*24*60*60, '/');
                     setcookie('username', $user->username, time()+7*24*60*60, '/');
-                    header('Location: index.php?controller=dashboards');
+                    // header('Location: index.php?controller=dashboards');
                 } else {
                     $_SESSION['message'] = 'Đăng Nhập Thất Bại!!!';
                     $_SESSION['email'] = $_POST['email'];
@@ -71,7 +67,83 @@ class AuthsController extends BaseController{
     }
 
     public function create() {
-
+        if (isset($_SESSION['email']) && isset($_SESSION['password']) && isset($_SESSION['username']) && isset($_SESSION['address']) && isset($_SESSION['phone'])) {
+            if ($_SESSION['email'] == $_POST['email'] && $_SESSION['username'] == $_POST['username'] && $_SESSION['address'] == $_POST['address'] && $_SESSION['password'] == $_POST['password'] && $_SESSION['phone'] == $_POST['phone']) {
+            unset($_SESSION['message']);
+            $this->folder = 'auths';
+            $this->render('signup');
+            } else {
+            if ($_POST['password'] != $_POST['password_confirmation']) {
+                $_SESSION['message'] = 'Mật Khẩu Chưa Chính Xác!!!';
+                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['password'] = $_POST['password'];
+                $_SESSION['address'] = $_POST['address'];
+                $_SESSION['phone'] = $_POST['phone'];
+                $this->folder = 'auths';
+                $this->render('signup');
+                } else if (User::emailVerify($_POST['email'])) {
+                    $_SESSION['message'] = 'Email Đã Tồn Tại!!!';
+                    $_SESSION['username'] = $_POST['username'];
+                    $_SESSION['email'] = $_POST['email'];
+                    $_SESSION['password'] = $_POST['password'];
+                    $_SESSION['address'] = $_POST['address'];
+                    $_SESSION['phone'] = $_POST['phone'];
+                    $this->folder = 'auths';
+                    $this->render('signup');
+                } else if (User::phoneVerify($_POST['phone'])) {
+                    $_SESSION['message'] = 'Số Điện Thoại Đã Tồn Tại!!!';
+                    $_SESSION['username'] = $_POST['username'];
+                    $_SESSION['email'] = $_POST['email'];
+                    $_SESSION['password'] = $_POST['password'];
+                    $_SESSION['address'] = $_POST['address'];
+                    $_SESSION['phone'] = $_POST['phone'];
+                    $this->folder = 'auths';
+                    $this->render('signup');
+                    } else {
+                        $role_id = 1;
+                        User::create($_POST['username'], $_POST['email'], $_POST['password'], $_POST['address'], $_POST['phone'], $role_id);
+                        $this->folder = 'auths';
+                        $_SESSION['success'] = 'Tạo Tài Khoản Mới Thành Công!!!';
+                        $this->render('index');
+            }
+        }
+        } else {
+            if ($_POST['password'] != $_POST['password_confirmation']) {
+            $_SESSION['message'] = 'Mật Khẩu Chưa Chính Xác!!!';
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['email'] = $_POST['email'];
+            $_SESSION['password'] = $_POST['password'];
+            $_SESSION['address'] = $_POST['address'];
+            $_SESSION['phone'] = $_POST['phone'];
+            $this->folder = 'auths';
+            $this->render('signup');
+            } else if (User::emailVerify($_POST['email'])) {
+                $_SESSION['message'] = 'Email Đã Tồn Tại!!!';
+                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['password'] = $_POST['password'];
+                $_SESSION['address'] = $_POST['address'];
+                $_SESSION['phone'] = $_POST['phone'];
+                $this->folder = 'auths';
+                $this->render('signup');
+                } else if (User::phoneVerify($_POST['phone'])) {
+                    $_SESSION['message'] = 'Số Điện Thoại Đã Tồn Tại!!!';
+                    $_SESSION['username'] = $_POST['username'];
+                    $_SESSION['email'] = $_POST['email'];
+                    $_SESSION['password'] = $_POST['password'];
+                    $_SESSION['address'] = $_POST['address'];
+                    $_SESSION['phone'] = $_POST['phone'];
+                    $this->folder = 'auths';
+                    $this->render('signup');
+                } else {
+                    $role_id = 1;
+                    User::create($_POST['username'], $_POST['email'], $_POST['password'], $_POST['address'], $_POST['phone'], $role_id);
+                    $this->folder = 'auths';
+                    $_SESSION['success'] = 'Tạo Tài Khoản Mới Thành Công!!!';
+                    $this->render('index');
+            }
+        }
     }
 
     public function store() {
@@ -84,6 +156,7 @@ class AuthsController extends BaseController{
         setcookie('token', '', -1, '/'); 
         setcookie('email', '', -1, '/'); 
         setcookie('username', '', -1, '/'); 
+        unset($_SESSION['success']);
         header('Location: index.php?controller=auths');
     }
     public function error(){
