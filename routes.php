@@ -2,8 +2,13 @@
 $controllers = array(
     'pages' => ['home', 'error'],
     'auths' => ['login', 'signup', 'index', 'create', 'show', 'store', 'destroy'],
-    'dashboards' => ['login', 'index', 'create', 'show', 'store', 'destroy'],
+    'dashboards' => ['index', 'create', 'show', 'store', 'destroy'],
     'users' => ['index', 'toCreate', 'createUser', 'create', 'update', 'show', 'store', 'destroy'],
+    'roles' => ['index', 'create', 'show', 'store', 'destroy'],
+    'chapters' => ['index', 'create', 'show', 'store', 'destroy'],
+    'categories' => ['index', 'create', 'show', 'store', 'destroy'],
+    'stories' => ['index', 'create', 'show', 'store', 'destroy'],
+    'comments' => ['index', 'create', 'show', 'store', 'destroy'],
 ); // Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 
 // Nếu các tham số nhận được từ URL không hợp lệ (không thuộc list controller và action có thể gọi

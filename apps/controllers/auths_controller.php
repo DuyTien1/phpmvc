@@ -55,7 +55,7 @@ class AuthsController extends BaseController{
                     setcookie('token', $token, time()+7*24*60*60, '/');
                     setcookie('email', $user->email, time()+7*24*60*60, '/');
                     setcookie('username', $user->username, time()+7*24*60*60, '/');
-                    // header('Location: index.php?controller=dashboards');
+                    header('Location: index.php?controller=dashboards');
                 } else {
                     $_SESSION['message'] = 'Đăng Nhập Thất Bại!!!';
                     $_SESSION['email'] = $_POST['email'];
